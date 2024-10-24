@@ -1,0 +1,626 @@
+<html>
+<head>
+    <title>Restaurant Landing Page</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #0b0d17;
+            color: #ffffff;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #0b0d17;
+        }
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .navbar .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        .navbar .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .navbar .order-now {
+            background-color: #1a73e8;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px;
+        }
+        .hero .image-container {
+            position: relative;
+        }
+        .hero .image-container img {
+            width: 300px;
+            border-radius: 20px;
+        }
+        .hero .content {
+            max-width: 600px;
+        }
+        .hero .content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .hero .content .features {
+            display: flex;
+            gap: 50px;
+            margin-bottom: 30px;
+        }
+        .hero .content .features .feature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .hero .content .features .feature i {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .hero .content .buttons {
+            display: flex;
+            gap: 20px;
+        }
+        .hero .content .buttons a {
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .hero .content .buttons .explore-menu {
+            background-color: #1a73e8;
+            color: #ffffff;
+        }
+        .hero .content .buttons .reserve-now {
+            color: #1a73e8;
+            border: 1px solid #1a73e8;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            gap: 50px;
+            padding: 20px;
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .left-section {
+            max-width: 300px;
+        }
+        .left-section h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .left-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .left-section ul li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .left-section ul li i {
+            color: #007bff;
+            margin-right: 10px;
+        }
+        .left-section button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .right-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .card {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .card i {
+            font-size: 24px;
+        }
+        .card h2 {
+            font-size: 20px;
+            margin: 0;
+        }
+        .card p {
+            margin: 0;
+            color: #ccc;
+        }
+        .card:nth-child(1) {
+            background-color: #0f3d3e;
+        }
+        .card:nth-child(2) {
+            background-color: #4a3f00;
+        }
+        .card:nth-child(3) {
+            background-color: #0a0a23;
+        }
+        .card:nth-child(4) {
+            background-color: #3d0a0a;
+        }
+        .intro-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 50px;
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .intro-section .images {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .intro-section .image {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .intro-section .image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .intro-section .image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            background-color: #f5c542;
+            border-radius: 20px;
+            z-index: -1;
+        }
+        .intro-section .image:nth-child(2)::before {
+            top: 20px;
+            left: 20px;
+            background-color: #f5c542;
+        }
+        .intro-section .image:nth-child(2) {
+            transform: rotate(-5deg);
+        }
+        .intro-section .image:nth-child(1) {
+            transform: rotate(5deg);
+        }
+        .intro-section .text {
+            margin-top: 20px;
+        }
+        .intro-section .text h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+        .intro-section .text p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .intro-section .text a {
+            color: #4285f4;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .intro-section .text a:hover {
+            text-decoration: underline;
+        }
+        .testimonial {
+            background-color: #0a0e27;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+        .testimonial img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+        .testimonial-content {
+            flex: 1;
+            margin-left: 20px;
+        }
+        .testimonial-content h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .testimonial-content p {
+            margin: 5px 0 0;
+            font-size: 14px;
+        }
+        .testimonial-nav {
+            display: flex;
+            align-items: center;
+        }
+        .testimonial-nav i {
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+        .testimonial-nav i:hover {
+            color: #007bff;
+        }
+        .testimonial-decor {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 50px;
+            height: 50px;
+            background: url('https://placehold.co/50x50') no-repeat center center;
+            background-size: cover;
+        }
+        .content {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .content img {
+            border-radius: 20px;
+            width: 45%;
+        }
+        .content-text {
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .content-text h2 {
+            font-size: 24px;
+            margin: 0 0 10px;
+        }
+        .content-text p {
+            font-size: 16px;
+            margin: 0 0 20px;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .stats div {
+            text-align: center;
+        }
+        .stats div h3 {
+            font-size: 20px;
+            margin: 0;
+        }
+        .stats div p {
+            font-size: 14px;
+            margin: 5px 0 0;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        .buttons a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .buttons .order-now {
+            background-color: #007bff;
+        }
+        .buttons .join-us {
+            border: 1px solid #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Rishabh And Om</div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Services</a>
+            <a href="#">Reviews</a>
+            <a href="#">Benefit</a>
+            <a href="#">Contact</a>
+        </div>
+        <a class="order-now" href="#">Order Now</a>
+    </div>
+    <div class="hero">
+        <div class="image-container">
+            <img src="https://storage.googleapis.com/a1aa/image/CIZQeCE7AaTcfkPjhelPvpEK5gCpkWfN2mQtysHsm9eSJ3QdC.jpg" alt="Interior of a modern restaurant with wooden tables and black chairs" width="300" height="600">
+        </div>
+        <div class="content">
+            <h1>Savor Every Bite</h1>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-bolt"></i>
+                    <p>Delicious dishes delivered freshly daily</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-star"></i>
+                    <p>Experience fine dining in comfort</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-sync-alt"></i>
+                    <p>Reserve your table easily online</p>
+                </div>
+            </div>
+            <div class="buttons">
+                <a class="explore-menu" href="#">Explore Our Menu</a>
+                <a class="reserve-now" href="#">Reserve Now <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="left-section">
+            <h1>Diverse Culinary Offerings</h1>
+            <ul>
+                <li><i class="fas fa-arrow-right"></i>Explore our exquisite dining options today!</li>
+                <li><i class="fas fa-arrow-right"></i>Artfully Crafted Culinary Masterpieces</li>
+                <li><i class="fas fa-arrow-right"></i>Signature Dishes Await You</li>
+            </ul>
+            <button>Explore Menu</button>
+        </div>
+        <div class="right-section">
+            <div class="card">
+                <i class="fas fa-cog"></i>
+                <h2>Exquisite Dining Experience</h2>
+                <p>We offer a wide range of delicious dishes to tantalize your taste buds daily.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-glass-martini-alt"></i>
+                <h2>Refreshing Beverage Selection</h2>
+                <p>Our menu offers delightful selections made with fresh ingredients and a touch of love.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-lightbulb"></i>
+                <h2>Delicious Menu</h2>
+                <p>Savor the finest flavors crafted by our chefs.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h2>Elegant Ambiance</h2>
+                <p>Savor the finest flavors crafted by our chefs.</p>
+            </div>
+        </div>
+    </div>
+    <div class="intro-section">
+        <div class="images">
+            <div class="image">
+                <img src="https://storage.googleapis.com/a1aa/image/gewBXROrMiwbIC1tdHXOjohO8waBND9tU0mBt0ojuaepHHqTA.jpg" alt="A kitchen with various utensils and a plant in the background" width="400" height="300">
+            </div>
+            <div class="image">
+                <img src="https://storage.googleapis.com/a1aa/image/j3C2aUXfVehTOk6UQvh1EXxxzCilZgSamT2bgXvGFseXPOUnA.jpg" alt="A modern staircase with wooden steps and metal railings" width="400" height="300">
+            </div>
+        </div>
+        <div class="text">
+            <h1>Welcome to Rishabh And Om Ltd.</h1>
+            <p>At Rishabh And Om Ltd., we specialize in delivering unique and memorable dining experiences.</p>
+            <a href="#">Discover More <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+    <div class="testimonial">
+        <div class="testimonial-nav">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="testimonial-content">
+            <img alt="Profile picture of the reviewer" height="50" src="https://storage.googleapis.com/a1aa/image/yitck3PsMj4iJ9Raetup93l0H4ox1TF5HOJBfVG0Si9XTHqTA.jpg" width="50"/>
+            <div>
+                <h3>Rishabh Mehta</h3>
+                <p>Food Blogger</p>
+                <p>The dining experience at Rishabh And Om Ltd. was remarkable, with delicious food and attentive service.</p>
+            </div>
+        </div>
+        <div class="testimonial-nav">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+        <div class="testimonial-decor"></div>
+    </div>
+    <div class="content">
+        <img alt="Interior of a restaurant with a bar and seating area" height="300" src="https://storage.googleapis.com/a1aa/image/p4L59qfxeXtZ1U7Ay6PAzv7icNcf0PBnGctUpTHSIxwwmOUnA.jpg" width="400"/>
+        <div class="content-text">
+            <h2>Unmatched Dining Experience Awaits You</h2>
+            <p>Experience the finest dining with exquisite dishes and seamless reservations.</p>
+            <div class="stats">
+                <div>
+                    <h3>50+</h3>
+                    <p>Guest Visits</p>
+                </div>
+                <div>
+                    <h3>95%</h3>
+                    <p>Satisfaction Rate</p>
+                </div>
+                <div>
+                    <h3>20+</h3>
+                    <p>Special Dishes</p>
+                </div>
+            </div>
+            <div class="buttons">
+                <a class="order-now" href="#">Order Now</a>
+                <a class="join-us" href="#">Join Us Today</a>
+            </div>
+        </div>
+    </div>
+  <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0d0d0d;
+            color: #fff;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .contact-form {
+            background-color: #0047ff;
+            padding: 40px;
+            border-radius: 20px;
+            width: 60%;
+            max-width: 800px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .contact-form h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea {
+            width: 48%;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+        }
+        .form-group textarea {
+            width: 100%;
+            height: 100px;
+        }
+        .submit-btn {
+            display: block;
+            width: 200px;
+            margin: 0 auto;
+            padding: 10px;
+            background-color: #fff;
+            color: #0047ff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        .footer {
+            background-color: #0d0d0d;
+            padding: 40px 0;
+            text-align: center;
+        }
+        .footer .footer-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .footer .footer-content div {
+            margin: 10px;
+        }
+        .footer .footer-content a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+        }
+        .footer .footer-content .social-icons a {
+            margin: 0 10px;
+            font-size: 1.5em;
+        }
+        .footer .footer-content .buttons a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #fff;
+        }
+        .footer .footer-content .buttons .reservation-btn {
+            background-color: #0047ff;
+        }
+        .footer .footer-content .buttons .menu-btn {
+            background-color: transparent;
+            border: 1px solid #0047ff;
+        }
+        .footer .footer-bottom {
+            margin-top: 20px;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="contact-form">
+            <h1>Get in Touch</h1>
+            <div class="form-group">
+                <input type="text" placeholder="Full Name">
+                <input type="text" placeholder="Your company">
+            </div>
+            <div class="form-group">
+                <input type="email" placeholder="name@domain.com">
+                <input type="email" placeholder="name@domain.com">
+            </div>
+            <div class="form-group">
+                <textarea placeholder="How can we help ?"></textarea>
+            </div>
+            <button class="submit-btn">Contact Us</button>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-content">
+            <div>
+                <h3>Rishabh And Om</h3>
+                <p>Experience delicious cuisine and exceptional service at our modern restaurant, Rishabh And Om Ltd.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div>
+                <a href="#">Home</a>
+                <a href="#">Service</a>
+                <a href="#">Reviews</a>
+                <a href="#">Benefit</a>
+            </div>
+            <div>
+                <a href="#">Help center</a>
+                <a href="#">Terms of service</a>
+                <a href="#">Legal</a>
+                <a href="#">Privacy policy</a>
+            </div>
+            <div class="buttons">
+                <a href="#" class="reservation-btn">Make a Reservation</a>
+                <a href="#" class="menu-btn">View Our Menu</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© all rights reserved. made by Rishabh And Om</p>
+        </div>
+    </div>
+</body>
+</html>
