@@ -622,5 +622,13 @@
             <p>© all rights reserved. made by Rishabh And Om</p>
         </div>
     </div>
+    <script>
+    fetch('http://your-domain.com/api/api.php') // Update with your host URL
+        .then(response => response.json())
+        .then(data => {
+            console.log(data); // Process and display your data here
+        })
+        .catch(error => console.error('Error:', error));
+</script>
 </body>
 </html>
