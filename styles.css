@@ -302,11 +302,15 @@ body {
 .buttons .join-us {
   border: 1px solid #007bff;
 }
+#contactFormContainer{
+  display: flex;
+  justify-content: center;
+}
 .contact-form {
   background-color: #0047ff;
   padding: 40px;
   border-radius: 20px;
-  width: 60%;
+  width: 40%;
   max-width: 800px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
@@ -374,6 +378,19 @@ body {
 .footer .footer-content .social-icons a {
   margin: 0 10px;
   font-size: 1.5em;
+  transition: color 0.5s linear;
+}
+.fa-instagram, .fa-facebook, .fa-linkedin{
+  transition: all 0.25s linear;
+}
+.fa-instagram:hover{
+  color: #c13584;
+}
+.fa-facebook:hover{
+  color: #1877F2;
+}
+.fa-linkedin:hover{
+  color: #0077B5;
 }
 .footer .footer-content .buttons a {
   display: inline-block;
@@ -383,13 +400,7 @@ body {
   text-decoration: none;
   color: #fff;
 }
-.footer .footer-content .buttons .reservation-btn {
-  background-color: #0047ff;
-}
-.footer .footer-content .buttons .menu-btn {
-  background-color: transparent;
-  border: 1px solid #0047ff;
-}
+
 .footer .footer-bottom {
   margin-top: 20px;
   font-size: 0.8em;
