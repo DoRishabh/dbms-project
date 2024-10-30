@@ -6,6 +6,9 @@ body {
   color: #ffffff;
 }
 .navbar {
+  z-index: 1;
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -76,6 +79,8 @@ body {
 .hero .content .buttons {
   display: flex;
   gap: 20px;
+  position: sticky;
+  top: 200px;
 }
 .hero .content .buttons a {
   padding: 10px 20px;
