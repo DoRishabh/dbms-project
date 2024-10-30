@@ -79,8 +79,6 @@ body {
 .hero .content .buttons {
   display: flex;
   gap: 20px;
-  position: sticky;
-  top: 200px;
 }
 .hero .content .buttons a {
   padding: 10px 20px;
