@@ -91,46 +91,9 @@ body {
   color: #1a73e8;
   border: 1px solid #1a73e8;
 }
-.container {
-  display: flex;
-  flex-direction: row;
-  gap: 50px;
-  padding: 20px;
-  width: 80%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.left-section {
-  max-width: 300px;
-}
-.left-section h1 {
-  font-size: 36px;
-  margin-bottom: 20px;
-}
-.left-section ul {
-  list-style: none;
-  padding: 0;
-}
-.left-section ul li {
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-}
-.left-section ul li i {
-  color: #007bff;
-  margin-right: 10px;
-}
-.left-section button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-top: 20px;
-}
+
 .right-section {
+  margin: 40px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
@@ -170,7 +133,7 @@ body {
 .intro-section {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   padding: 50px;
   width: 80%;
   max-width: 1200px;
@@ -293,6 +256,7 @@ body {
   width: 45%;
 }
 .content-text {
+  text-align: center;
   width: 45%;
   display: flex;
   flex-direction: column;
@@ -324,7 +288,10 @@ body {
 }
 .buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+}
+.order-now, .join-us{
+  margin: 0 10px;
 }
 .buttons a {
   text-decoration: none;
@@ -338,4 +305,107 @@ body {
 }
 .buttons .join-us {
   border: 1px solid #007bff;
+}
+#contactFormContainer{
+  display: flex;
+  justify-content: center;
+}
+.contact-form {
+  background-color: #0047ff;
+  padding: 40px;
+  border-radius: 20px;
+  width: 40%;
+  max-width: 800px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+.contact-form h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+.form-group input, .form-group textarea {
+  width: 48%;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+}
+.form-group textarea {
+  width: 100%;
+  height: 100px;
+}
+.submit-btn {
+  display: block;
+  width: 200px;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: #fff;
+  color: #0047ff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  cursor: pointer;
+}
+.footer {
+  background-color: #0d0d0d;
+  padding: 40px 0;
+  text-align: center;
+}
+.footer .footer-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.footer .footer-content div {
+  margin: 10px;
+}
+.footer .footer-content a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin: 5px 0;
+}
+.footer .footer-content .social-icons{
+  display: flex;
+  justify-content: center;
+}
+.footer .footer-content .social-icons a {
+  margin: 0 10px;
+  font-size: 1.5em;
+  transition: color 0.5s linear;
+}
+.fa-instagram, .fa-facebook, .fa-linkedin{
+  transition: all 0.25s linear;
+}
+.fa-instagram:hover{
+  color: #c13584;
+}
+.fa-facebook:hover{
+  color: #1877F2;
+}
+.fa-linkedin:hover{
+  color: #0077B5;
+}
+.footer .footer-content .buttons a {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.footer .footer-bottom {
+  margin-top: 20px;
+  font-size: 0.8em;
 }
