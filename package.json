@@ -1,0 +1,20 @@
+{
+  "name": "khana-ludhiana",
+  "version": "1.0.0",
+  "description": "This is our DBMS project mainly focused on SQL. I am using MySQL here. Me (Om Raja) and Rishabh Mehta are builder of this project.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "Om Raja, Rishabh Mehta",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.11.4"
+  }
+}
