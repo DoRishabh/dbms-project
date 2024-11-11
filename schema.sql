@@ -26,7 +26,7 @@ CREATE TABLE restaurant_tables(
 CREATE TABLE orders(
     order_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     customer_id INT NOT NULL,
-    order_date DATE DEFAULT CURRENT_TIMESTAMP,
+    order_date DATE DEFAULT CURRENT_DATE,
     order_status TINYINT(1) UNSIGNED DEFAULT 0, --BOOLEAN
     order_table_number INT NOT NULL,
     FOREIGN KEY(customer_id) REFERENCES customers(customer_id) ON UPDATE CASCADE ON DELETE CASCADE,
