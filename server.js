@@ -7,7 +7,8 @@ dotenv.config();
 const app = express();
 
 app.use(cors());
-app.use(express.urlencoded());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
 const connection = mysql.createConnection({
@@ -94,7 +95,7 @@ app.post('/customer/place-order', async(req, res)=>{
     let date = req.body.orderDate;
     let tableNumber = req.body.tableNumber;
 
-    const query = "INSERT INTO orders(customer_id, order_date, order_table_number VALUES(?, ?, ?)";
+    const query = "INSERT INTO orders(customer_id, order_date, order_table_number) VALUES(?, ?, ?)";
     const values = [customer_id, date, tableNumber];
 
     insertValue(query, values);
@@ -107,11 +108,11 @@ app.get('/customer/past-orders', async(req, res)=>{
     const query = `SELECT * FROM orders WHERE customer_id = ${customer_id}`;
 
     let orders = await readValue(query);
-    res.json({orders});
+    res.json({data: orders});
 });
 app.get('/customer/menu', async(req, res)=>{
     let menu = await readValue("SELECT * FROM dishes");
-    res.json(menu);
+    res.json({data: menu});
 });
 app.post('/employee/add-dish', async(req, res)=>{
     let name = req.body.dishName;
@@ -119,7 +120,7 @@ app.post('/employee/add-dish', async(req, res)=>{
     let description = req.body.dishDescription;
     let category = req.body.dishCategory;
 
-    const query = "INSRT INTO dishes VALUES(?, ?, ?, ?)";
+    const query = "INSERT INTO dishes VALUES(?, ?, ?, ?)";
     const values = [name, price, description, category];
 
     insertValue(query, values);
@@ -141,38 +142,43 @@ app.get('/employee/show-orders', async(req, res)=>{
 
     const query = `SELECT * FROM orders WHERE order_date = ${date}`;
     let orders = await readValue(query);
-    res.json({orders});
+    res.json({data: orders});
 });
 app.get('/employee/show-reservation', async(req, res)=>{
     let date = req.body.reservationDate;
-    const query = `SELCT * FROM reservations WHERE reservation_date = ${date}`;
+    const query = `SELECT * FROM reservations WHERE reservation_date = ${date}`;
     let reservations = await readValue(query);
-    res.json({reservations});
+    res.json({data: reservations});
 
 });
 app.get('/manager/total-orders', async(req, res)=>{
     let date = req.body.date;
-    const query = `SELCT COUNT(order_id) FROM orders WHERE order_date = ${date}`;
+    const query = `SELECT COUNT(order_id) FROM orders WHERE order_date = ${date}`;
     let totalOrders = await readValue(query);
-    res.json({reservations});
+    res.json({data: totalOrders});
 });
 app.get('/manager/total-revenue', async(req, res)=>{
     let date = req.body.date;
-    const query = `SELCT SUM(dish_price) FROM dishes WHERE order_date = ${date}`;
-    let totalOrders = await readValue(query);
-    res.json({reservations});
+    const query = `SELECT SUM(order_items.dish_price) FROM orders 
+    INNER JOIN order_items ON orders.order_id = order_items.order_id 
+    WHERE orders.order_date = ${date}`;
+;
+    let totalRevenue = await readValue(query);
+    res.json({data: totalRevenue});
 });
 app.get('/manager/employee-list', async(req, res)=>{
    const query = "SELECT * FROM employees";
    let list = await readValue(query);
-   res.json({list});
+   res.json({data: list});
 });
 
 //global catch
-function globalCatch(req, res, err, next){
-    res.send("Error aa gaya bhai");
+function globalCatch(err, req, res, next){
+    console.log(err);
+    res.status(500).send("Error aa gaya bhai");
     return;
 }
+app.use(globalCatch);   
 
 
 
