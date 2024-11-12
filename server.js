@@ -1,8 +1,14 @@
 import express from "express";
 import dotenv from "dotenv";
 import mysql from "mysql2";
+import cors from "cors";
+
 dotenv.config();
 const app = express();
+
+app.use(cors());
+app.use(express.urlencoded());
+app.set("view engine", "ejs");
 
 const connection = mysql.createConnection({
     host: process.env.DATABASE_HOST, //localhost
@@ -67,13 +73,52 @@ function deleteValue(deleteQuery, deleteValues){
     });
 }
 
-var customer_query = "INSERT INTO customers(customer_name, customer_email, customer_phone) VALUES(?, ?, ?)";
-var customer_value = ['Om Raja', 'omraja451@gmail.com', 8757710585];
-const rre = insertValue(customer_query, customer_value);
-console.log(rre);
 
 
-
+app.post('/customer/reservation', async(req, res)=>{
+    let time = req.body;
+    console.log(time);
+});
+app.post('/customer/place-order', async(req, res)=>{
+    let time = req.body;
+    console.log(time);
+});
+app.get('/customer/past-orders', async(req, res)=>{
+    let time = req.body;
+    console.log(time);
+});
+app.get('/customer/menu', async(req, res)=>{
+    let time = req.body;
+    console.log(time);
+});
+app.post('/employee/add-dish', async(req, res)=>{
+    let time = req.body;
+    console.log(time);
+});
+app.post('/employee/add-customer', async(req, res)=>{
+    let time = req.body;
+    console.log(time);
+});
+app.get('/employee/show-orders', async(req, res)=>{
+    let time = req.body;
+    console.log(time);
+});
+app.get('/employee/show-reservation', async(req, res)=>{
+    let time = req.body;
+    console.log(time);
+});
+app.get('/manager/total-orders', async(req, res)=>{
+    let time = req.body;
+    console.log(time);
+});
+app.get('/manager/total-revenue', async(req, res)=>{
+    let time = req.body;
+    console.log(time);
+});
+app.get('/manager/employee-list', async(req, res)=>{
+    let time = req.body;
+    console.log(time);
+});
 
 
 
