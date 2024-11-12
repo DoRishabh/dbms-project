@@ -38,16 +38,18 @@ function insertValue(query, values){
 }
 
 //READ
-function readValue(query){
-    connection.query(query, (err, result)=>{
-        if(err){
-            console.error("Error retrieving the data", err);
-            return;
-        }else{
-            console.log("Data received", result);
-        }
+function readValue(query) {
+    return new Promise((resolve, reject) => {
+        connection.query(query, (err, result) => {
+            if (err) {
+                reject(err);  // Reject if there is an error
+            } else {
+                resolve(result);  // Resolve with the result
+            }
+        });
     });
 }
+
 
 //UPDATE
 function updateValue(updateQuery, updateValues){
@@ -104,12 +106,12 @@ app.get('/customer/past-orders', async(req, res)=>{
     
     const query = `SELECT * FROM orders WHERE customer_id = ${customer_id}`;
 
-    let orders = readValue(query);
+    let orders = await readValue(query);
     res.json({orders});
 });
 app.get('/customer/menu', async(req, res)=>{
-    let menu = readValue("SELECT * FROM dishes");
-    res.json({menu});
+    let menu = await readValue("SELECT * FROM dishes");
+    res.json(menu);
 });
 app.post('/employee/add-dish', async(req, res)=>{
     let name = req.body.dishName;
@@ -138,31 +140,31 @@ app.get('/employee/show-orders', async(req, res)=>{
     let date = req.body.date;
 
     const query = `SELECT * FROM orders WHERE order_date = ${date}`;
-    let orders = readValue(query);
+    let orders = await readValue(query);
     res.json({orders});
 });
 app.get('/employee/show-reservation', async(req, res)=>{
     let date = req.body.reservationDate;
     const query = `SELCT * FROM reservations WHERE reservation_date = ${date}`;
-    let reservations = readValue(query);
+    let reservations = await readValue(query);
     res.json({reservations});
 
 });
 app.get('/manager/total-orders', async(req, res)=>{
     let date = req.body.date;
     const query = `SELCT COUNT(order_id) FROM orders WHERE order_date = ${date}`;
-    let totalOrders = readValue(query);
+    let totalOrders = await readValue(query);
     res.json({reservations});
 });
 app.get('/manager/total-revenue', async(req, res)=>{
     let date = req.body.date;
     const query = `SELCT SUM(dish_price) FROM dishes WHERE order_date = ${date}`;
-    let totalOrders = readValue(query);
+    let totalOrders = await readValue(query);
     res.json({reservations});
 });
 app.get('/manager/employee-list', async(req, res)=>{
    const query = "SELECT * FROM employees";
-   let list = readValue(query);
+   let list = await readValue(query);
    res.json({list});
 });
 
