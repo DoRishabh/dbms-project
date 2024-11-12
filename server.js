@@ -76,51 +76,101 @@ function deleteValue(deleteQuery, deleteValues){
 
 
 app.post('/customer/reservation', async(req, res)=>{
-    let time = req.body;
-    console.log(time);
+    let date = req.body.date;
+    let time = req.body.time;
+    let customer_id = req.body.customer_id;
+
+    const query = "INSERT INTO reservations (reservation_date, reservation_time, customer_id)VALUES(?, ?, ?)";
+    const values = [date, time, customer_id];
+
+    insertValue(query, values);
+    res.send("Reserved");
+
 });
 app.post('/customer/place-order', async(req, res)=>{
-    let time = req.body;
-    console.log(time);
+    let customer_id = req.body.customer_id;
+    let date = req.body.orderDate;
+    let tableNumber = req.body.tableNumber;
+
+    const query = "INSERT INTO orders(customer_id, order_date, order_table_number VALUES(?, ?, ?)";
+    const values = [customer_id, date, tableNumber];
+
+    insertValue(query, values);
+    res.send("Order placed");
+
 });
 app.get('/customer/past-orders', async(req, res)=>{
-    let time = req.body;
-    console.log(time);
+    let customer_id = req.body.customer_id;
+    
+    const query = `SELECT * FROM orders WHERE customer_id = ${customer_id}`;
+
+    let orders = readValue(query);
+    res.json({orders});
 });
 app.get('/customer/menu', async(req, res)=>{
-    let time = req.body;
-    console.log(time);
+    let menu = readValue("SELECT * FROM dishes");
+    res.json({menu});
 });
 app.post('/employee/add-dish', async(req, res)=>{
-    let time = req.body;
-    console.log(time);
+    let name = req.body.dishName;
+    let price = req.body.dishPrice;
+    let description = req.body.dishDescription;
+    let category = req.body.dishCategory;
+
+    const query = "INSRT INTO dishes VALUES(?, ?, ?, ?)";
+    const values = [name, price, description, category];
+
+    insertValue(query, values);
+    res.send("Dish added");
 });
 app.post('/employee/add-customer', async(req, res)=>{
-    let time = req.body;
-    console.log(time);
+    let name = req.body.name;
+    let email = req.body.email;
+    let phone = req.body.phone;
+
+    const query = "INSERT INTO customers(customer_name, customer_email, customer_phone) VALUES(?, ?, ?)";
+    const values = [name, email, phone];
+
+    insertValue(query, values);
+    res.send("Customer added");
 });
 app.get('/employee/show-orders', async(req, res)=>{
-    let time = req.body;
-    console.log(time);
+    let date = req.body.date;
+
+    const query = `SELECT * FROM orders WHERE order_date = ${date}`;
+    let orders = readValue(query);
+    res.json({orders});
 });
 app.get('/employee/show-reservation', async(req, res)=>{
-    let time = req.body;
-    console.log(time);
+    let date = req.body.reservationDate;
+    const query = `SELCT * FROM reservations WHERE reservation_date = ${date}`;
+    let reservations = readValue(query);
+    res.json({reservations});
+
 });
 app.get('/manager/total-orders', async(req, res)=>{
-    let time = req.body;
-    console.log(time);
+    let date = req.body.date;
+    const query = `SELCT COUNT(order_id) FROM orders WHERE order_date = ${date}`;
+    let totalOrders = readValue(query);
+    res.json({reservations});
 });
 app.get('/manager/total-revenue', async(req, res)=>{
-    let time = req.body;
-    console.log(time);
+    let date = req.body.date;
+    const query = `SELCT SUM(dish_price) FROM dishes WHERE order_date = ${date}`;
+    let totalOrders = readValue(query);
+    res.json({reservations});
 });
 app.get('/manager/employee-list', async(req, res)=>{
-    let time = req.body;
-    console.log(time);
+   const query = "SELECT * FROM employees";
+   let list = readValue(query);
+   res.json({list});
 });
 
-
+//global catch
+function globalCatch(req, res, err, next){
+    res.send("Error aa gaya bhai");
+    return;
+}
 
 
 

@@ -54,7 +54,7 @@ CREATE TABLE order_items(
 
 CREATE TABLE reservations(
     reservation_date DATE NOT NULL,
-    reservation_time TIMESTAMP NOT NULL,
+    reservation_time TIME NOT NULL,
     customer_id INT NOT NULL,
     PRIMARY KEY(reservation_date, reservation_time, customer_id), --composite primary key
     FOREIGN KEY(customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE ON UPDATE CASCADE
