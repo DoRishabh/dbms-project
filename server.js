@@ -86,7 +86,7 @@ app.post('/customer/reservation', async(req, res)=>{
     const query = "INSERT INTO reservations (reservation_date, reservation_time, customer_id)VALUES(?, ?, ?)";
     const values = [date, time, customer_id];
 
-    insertValue(query, values);
+    await insertValue(query, values);
     res.send("Reserved");
 
 });
@@ -98,7 +98,7 @@ app.post('/customer/place-order', async(req, res)=>{
     const query = "INSERT INTO orders(customer_id, order_date, order_table_number) VALUES(?, ?, ?)";
     const values = [customer_id, date, tableNumber];
 
-    insertValue(query, values);
+    await insertValue(query, values);
     res.send("Order placed");
 
 });
@@ -140,20 +140,20 @@ app.post('/employee/add-customer', async(req, res)=>{
 app.get('/employee/show-orders', async(req, res)=>{
     let date = req.body.date;
 
-    const query = `SELECT * FROM orders WHERE order_date = ${date}`;
+    const query = `SELECT * FROM orders`;
     let orders = await readValue(query);
     res.json({data: orders});
 });
 app.get('/employee/show-reservation', async(req, res)=>{
     let date = req.body.reservationDate;
-    const query = `SELECT * FROM reservations WHERE reservation_date = ${date}`;
+    const query = `SELECT * FROM reservations`;
     let reservations = await readValue(query);
     res.json({data: reservations});
 
 });
 app.get('/manager/total-orders', async(req, res)=>{
     let date = req.body.date;
-    const query = `SELECT COUNT(order_id) FROM orders WHERE order_date = ${date}`;
+    const query = `SELECT COUNT(order_id) FROM orders`;
     let totalOrders = await readValue(query);
     res.json({data: totalOrders});
 });
